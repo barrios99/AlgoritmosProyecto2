@@ -75,5 +75,16 @@ def getPersonas():
                     loficial.append(i[c])
     return loficial
 
+def gustosPersonas(persona, personas):
+    loficial=[]
+    for x in personas:
+        a=getPersona(x)
+        if a is not None:
+            loficial.append(a)
+    return loficial
+
+def buscaruno(persona, personas):
+    return personas.index(persona)            
+
 nombre=input("Ingrese un nombre completo")
-print(getPersonas())
+print(buscaruno(nombre, getPersonas()))
