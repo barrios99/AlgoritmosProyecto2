@@ -54,7 +54,6 @@ def addActividad (nombre, actividades):
 def getPersona(nombre):
     buscar="match (persona{name:'"+nombre+"'})-[x]->(d) return x,d"
     resultados = gdb.query(buscar, data_contents=True)
-    listado=resultados.rows
     listado = resultados.rows
     loficial=[]
     for x in listado:  
@@ -64,7 +63,17 @@ def getPersona(nombre):
                     loficial.append(i[c])
     return loficial
 
-
+def getPersonas():
+    buscar="match (n:persona) return n"
+    resultados = gdb.query(buscar, data_contents=True)
+    listado=resultados.rows
+    loficial=[]
+    for x in listado:  
+        for i in x: 
+            for c in i:
+                if c is not None:
+                    loficial.append(i[c])
+    return loficial
 
 nombre=input("Ingrese un nombre completo")
-print(getPersona(nombre))
+print(getPersonas())
