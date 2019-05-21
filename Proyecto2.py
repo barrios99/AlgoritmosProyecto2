@@ -84,7 +84,29 @@ def gustosPersonas(persona, personas):
     return loficial
 
 def buscaruno(persona, personas):
-    return personas.index(persona)            
+    return personas.index(persona)
+
+def algoritmo(persona, personas):
+    indice=buscaruno(persona, personas)
+    tamaño=len(personas)
+    comun=[]
+    total=[]
+    for i in range(0,tamaño):
+        com=0
+        tot=0
+        for x in personas[i]:
+            if x is personas[indice]:
+                com=com+1
+        comun.append(com)
+        tot=(len(personas[i])+len(personas[indice]))-com
+        total.append(tot)
+    otro=[]
+    otro.append(comun)
+    otro.append(total)
+    return otro
+    
+            
+            
 
 nombre=input("Ingrese un nombre completo")
-print(buscaruno(nombre, getPersonas()))
+print(algoritmo(nombre, getPersonas()))
