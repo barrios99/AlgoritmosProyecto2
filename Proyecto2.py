@@ -94,9 +94,7 @@ def algoritmo(persona, personas):
     for i in range(0,tamaño):
         com=0
         tot=0
-        for x in personas[i]:
-            if x is personas[indice]:
-                com=com+1
+        com=comunes(personas[indice],personas[i])
         comun.append(com)
         tot=(len(personas[i])+len(personas[indice]))-com
         total.append(tot)
@@ -104,9 +102,14 @@ def algoritmo(persona, personas):
     otro.append(comun)
     otro.append(total)
     return otro
-    
-            
-            
+
+def comunes(buscador, buscado):
+    com=[]
+    for x in buscado:
+        if x in buscador:
+            com.append(x)
+    return len(com)
+
 
 nombre=input("Ingrese un nombre completo")
 print(algoritmo(nombre, getPersonas()))
