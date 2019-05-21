@@ -18,24 +18,24 @@ menu = ("Estas son las opciones que puede realizar:" +
 
 opcion = 0
 
-while opcion != 5:
+while (opcion != 3):
     print(menu)
-    opcion = input("Ingrese una opcion: ")
+    opcion = int(input("Ingrese una opcion: "))
     if opcion==1:
         nombre = input("Ingrese su nombre completo: ")
-        addPersona(nombre)
+        #addPersona(nombre)
         personalidad = []
-        tipos = ["1. Pacificador", "2. Reformador", "3.Triunfador", "4. Ayudador", "5. Romántico", "6. Investigador", "7. Leal", "8. Entusiasta", "9. Desafiador", "10. Extrovertido", "11. Introvertido", "12. Ninguna de las anteriores"]
+        tipos = ["0. Pacificador", "1. Reformador", "2.Triunfador", "3. Ayudador", "4. Romántico", "5. Investigador", "6. Leal", "7. Entusiasta", "8. Desafiador", "9. Extrovertido", "10. Introvertido", "11. Ninguna de las anteriores"]
         for i in tipos:
             print(i)
-            
-        addPersonalidad(nombre,personalidad)
+        parar = " "
+        while parar != "NO":
+            tipos = input("Ingrese el número de opcion que define su personalidad: ")
+            parar = input("¿Desea agregar otra personalidad? Responda SI o NO: ")
+                
+        #addPersonalidad(nombre,personalidad)
         amimstad = input("¿Qué valora de la amistad?")
         musica = input("¿Cuáles son sus géneros musicales faovritos?")
         ocupacion = input("Ingrese 0 si estudia, ingrese 1 si trabaja o ingrese 3 si ambas: ")
         actividad = input("¿Qué actividades realiza en su tiempo libre?")
         
-    else:
-        print("La opcion no es valida.\n")
-        print(menu)
-        opcion = input("Ingrese una opcion: ")
