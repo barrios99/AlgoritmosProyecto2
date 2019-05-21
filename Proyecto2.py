@@ -93,27 +93,42 @@ def algoritmo(persona, personas):
     total=[]
     prop=0
     recomendados=[]
+    cdec=[]
+    comdc=[]
+    dev=[]
+    gustos=gustosPersonas(persona, personas)
     for i in range(0,tamaño):
         com=0
         tot=0
-        com=comunes(personas[indice],personas[i])
-        comun.append(com)
-        tot=(len(personas[i])+len(personas[indice]))-com
+        com=comunes(gustos[indice],gustos[i])
+        comun.append(len(com))
+        cdec.append(com)
+        tot=(len(gustos[i])+len(gustos[indice]))-len(com)
         total.append(tot)
     for s in range(0, tamaño):
         prop=1-(comun[s]/total[s])
-        if (prop<=0.4):
+        if (prop<=0.5):
             if personas[s] is not personas[indice]:
                 recomendados.append(personas[s])
-    return recomendados
+                comdc.append(cdec[s])
+    dev.append(recomendados)
+    dev.append(comdc)
+    return dev
 
 def comunes(buscador, buscado):
     com=[]
     for x in buscado:
         if x in buscador:
             com.append(x)
-    return len(com)
+    return com
 
 
 nombre=input("Ingrese un nombre completo")
-print(algoritmo(nombre, getPersonas()))
+amigos=algoritmo(nombre, getPersonas())
+for f in range(0, len(amigos[0])):
+    print("\n")
+    print(amigos[0][f])
+    print("Cosas en comun con esta persona:")
+    for d in amigos[1][f]:
+        print(d)
+
