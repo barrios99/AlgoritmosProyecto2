@@ -91,6 +91,8 @@ def algoritmo(persona, personas):
     tamaño=len(personas)
     comun=[]
     total=[]
+    prop=0
+    recomendados=[]
     for i in range(0,tamaño):
         com=0
         tot=0
@@ -98,10 +100,12 @@ def algoritmo(persona, personas):
         comun.append(com)
         tot=(len(personas[i])+len(personas[indice]))-com
         total.append(tot)
-    otro=[]
-    otro.append(comun)
-    otro.append(total)
-    return otro
+    for s in range(0, tamaño):
+        prop=1-(comun[s]/total[s])
+        if (prop<=0.4):
+            if personas[s] is not personas[indice]:
+                recomendados.append(personas[s])
+    return recomendados
 
 def comunes(buscador, buscado):
     com=[]
