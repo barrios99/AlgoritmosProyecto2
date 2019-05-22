@@ -10,6 +10,11 @@
 from neo4jrestclient.client import GraphDatabase
 gdb = GraphDatabase("http://localhost:7474", username="neo4j", password="1111")
 
+nombres = ["Aaron López","Benjamin Gracía", "Samuel Morales", "David Ajú", "Daniel Hernández", "Alex Pérez", "Alexis González", "Eusebio Florido", "Elean Rivas", "Markus Florido"]
+for i in nombres:
+    addPersona(i)
+    
+
 def addPersona(nombre):
     persona= gdb.nodes.create(name=nombre)
     persona.labels.add("persona")
