@@ -10,7 +10,7 @@
 from neo4jrestclient.client import GraphDatabase
 gdb = GraphDatabase("http://localhost:7474", username="neo4j", password="1111")
 
-nombres = ["Aaron López","Benjamin Gracía", "Samuel Morales", "David Ajú", "Daniel Hernández", "Alex Pérez", "Alexis González", "Eusebio Florido", "Elean Rivas", "Markus Florido"]
+nombres = ["Aaron López","Benjamin Gracía", "Samuel Morales", "David Ajú", "Daniel Hernández", "Alex Pérez", "Alexis González", "Eusebio Florido", "Elean Rivas", "Markus Florido", "Rodrigo Zea", "Mario Hernández", "Florencio Pérez", "Julio Garrido", "Oscar Navas", "Gustavo Sanchez", "Andy Salas", "Cristian Alvarado", "Cristian Escobar", "Josue Flores"]
 for i in nombres:
     addPersona(i)
     
