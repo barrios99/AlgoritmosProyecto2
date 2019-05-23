@@ -11,7 +11,7 @@
 
 print("----------   ¡Bienvenidos a MeetMe!   ----------")
 
-menu = ("Estas son las opciones que puede realizar:" +
+menu = ("\nEstas son las opciones que puede realizar:" +
         "\n1. Agregar una persona a la base de datos." +
         "\n2. Ingresar un nombre para conocer personas con los mismos gustos." +
         "\n3. Salir.")
@@ -20,22 +20,28 @@ opcion = 0
 
 while (opcion != 3):
     print(menu)
-    opcion = int(input("Ingrese una opcion: "))
+    opcion = int(input("\nIngrese una opcion: "))
     if opcion==1:
         nombre = input("Ingrese su nombre completo: ")
         #addPersona(nombre)
         personalidad = []
-        tipos = ["0. Pacificador", "1. Reformador", "2.Triunfador", "3. Ayudador", "4. Romántico", "5. Investigador", "6. Leal", "7. Entusiasta", "8. Desafiador", "9. Extrovertido", "10. Introvertido", "11. Ninguna de las anteriores"]
+        tipos = ["\n0. Pacificador", "1. Reformador", "2.Triunfador", "3. Ayudador", "4. Romántico", "5. Investigador", "6. Leal", "7. Entusiasta", "8. Desafiador", "9. Extrovertido", "10. Introvertido", "11. Ninguna de las anteriores \n"]
         for i in tipos:
             print(i)
         parar = " "
-        while parar != "NO":
+        while parar != "n":
             tipos = input("Ingrese el número de opcion que define su personalidad: ")
-            parar = input("¿Desea agregar otra personalidad? Responda SI o NO: ")
-                
-        #addPersonalidad(nombre,personalidad)
-        amimstad = input("¿Qué valora de la amistad?")
-        musica = input("¿Cuáles son sus géneros musicales faovritos?")
-        ocupacion = input("Ingrese 0 si estudia, ingrese 1 si trabaja o ingrese 3 si ambas: ")
-        actividad = input("¿Qué actividades realiza en su tiempo libre?")
-        
+            parar = input("¿Desea agregar otra personalidad? \nResponda 'n' para no, o cualquier otra tecla para sí: ")
+        else:
+            #print(tipos)
+            for i in personalidad:
+                print(personalidad)
+                #addPersonalidad(nombre,i)
+            amis = []
+            valor = ["0. Confianza", "1. Lealtad","2. Honestidad","3. Apoyo mutuo","4. Humildad","5. Solidaridad","6. Compañerismo","7. Tolerancia \n"]
+            for i in valor:
+                print(i)
+            amistad = input("¿Qué valora de la amistad?")
+            musica = input("¿Cuáles son sus géneros musicales faovritos?")
+            ocupacion = input("Ingrese 0 si estudia, ingrese 1 si trabaja o ingrese 3 si ambas: ")
+            actividad = input("¿Qué actividades realiza en su tiempo libre?")
