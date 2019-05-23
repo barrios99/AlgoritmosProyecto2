@@ -79,16 +79,33 @@ while (opcion != 3):
                 amistad = input("¿Qué valora de la amistad? \nIngrese la opción que considere importante: ")
                 validar = verificarNum(amistad)
                 while validar == False:
-                    print("Lo sentimos,el valor ingresado no es un numero.")
+                    print("Lo sentimos,el valor ingresado no es un número.")
                     amistad = input("¿Qué valora de la amistad? \nIngrese las opciones que considere importantes: ")
                     validar = verificarNum(amistad)
                 if validar == True:
-                    parar = input("¿Desea agregar otro valor para amistad? \nResponda 'n' para parar, o cualquier otra tecla para continuar")
-                    amis.append(i)
+                    parar = input("¿Desea agregar otro valor para amistad? \nResponda 'n' para parar, o cualquier otra tecla para continuar.")
+                    amis.append(amistad)
                 #for i in amis:
                     #addAmistad(nombre, i)
-                    
+        
             #Agregar sus generos musicales preferidos
-            generos = ["0. Disco", "1. Reggaeton", "2. Salsa","3. Pop","4. Rock","5. Electrónica","6. Rap","7. Trap","8. Hip-Hop","9. Cristiana","10. Jazz","11. Metal","12. Cumbia", "13. Merengue \n"]
-            musica = input("¿Cuáles son sus géneros musicales faovritos?")
-            actividad = input("¿Qué actividades realiza en su tiempo libre?")
+                generos = ["0. Disco", "1. Reggaeton", "2. Salsa","3. Pop","4. Rock","5. Electrónica","6. Rap","7. Trap","8. Hip-Hop","9. Cristiana","10. Jazz","11. Metal","12. Cumbia", "13. Merengue \n"]
+                for i in generos:
+                    print(i)
+                music = []
+                parar = " "
+                while parar != "n":
+                    musica = input("¿Cuáles son sus géneros musicales faovritos?")
+                    validar = verificarNum(musica)
+                    while validar == False:
+                        print("Lo sentimod, el valor ingresado no es un número.")
+                        musica = input("¿Cuáles son sus géneros musicales faovritos?")
+                        validar = verificarNum(musica)
+                    if validar == True:
+                        parar = input("¿Desea agregar otro género musical? \nResponda 'n' para parar, o cualquier otra tecla para continuar.")                        
+                        music.append(musica)
+                    #for i in music:
+                        #addMusica(nombre,i)
+
+                    a= [""]
+                    actividad = input("¿Qué actividades realiza en su tiempo libre?")
