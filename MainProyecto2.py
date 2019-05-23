@@ -27,33 +27,47 @@ while (opcion != 3):
     print(menu)
     opcion = int(input("\nIngrese una opcion: "))
     if opcion==1:
+        #Agrega una nueva persona a la base de datos
         nombre = input("Ingrese su nombre completo: ")
         #addPersona(nombre)
-        personalidad = []
-        tipos = ["\n0. Pacificador", "1. Reformador", "2.Triunfador", "3. Ayudador", "4. Romántico", "5. Investigador", "6. Leal", "7. Entusiasta", "8. Desafiador", "9. Extrovertido", "10. Introvertido", "11. Ninguna de las anteriores \n"]
+
+        #Agrega el tipo de personalidad de la persona
+        tipos = ["\n0. Pacificador", "1. Reformador", "2. Triunfador", "3. Ayudador", "4. Romántico", "5. Investigador", "6. Leal", "7. Entusiasta", "8. Desafiador", "9. Extrovertido", "10. Introvertido", "11. Ninguna de las anteriores \n"]
         for i in tipos:
             print(i)
+        personalidad = []
         parar = " "
         while parar != "n":
             tipos = input("Ingrese el número de opcion que define su personalidad: ")
             validar = verificarNum(tipos)
             while validar == False:
-                print("Lo sentimos,el valor ingresado no es un numero")
-                tipos = input("Ingrese el número de opcion que define su personalidad: ")
+                print("Lo sentimos,el valor ingresado no es un numero.")
+                tipos = input("Ingrese el número de opción que define su personalidad: ")
                 validar = verificarNum(tipos)
             if validar == True:
-                parar = input("¿Desea agregar otra personalidad? \nResponda 'n' para no, o cualquier otra tecla para sí: ")
+                parar = input("¿Desea agregar otra personalidad? \nResponda 'n' para parar, o cualquier otra tecla para continuar: ")
+                personalidad.append(tipos)
+            #for i in personalidad:
+                #addPersonalidad(nombre, i)
+                
+        #Agregar lo que valora en una amistad 
         else:
-            #print(tipos)
-            for i in personalidad:
-                print(personalidad)
-                #addPersonalidad(nombre,i)
-            amis = []
             valor = ["\n0. Confianza", "1. Lealtad","2. Honestidad","3. Apoyo mutuo","4. Humildad","5. Solidaridad","6. Compañerismo","7. Tolerancia \n"]
             for i in valor:
                 print(i)
-            amistad = input("¿Qué valora de la amistad? \nIngrese las opciones que considere importantes: ")
-            
+            amis = []
+            parar = " "
+            while parar != "n": 
+                amistad = input("¿Qué valora de la amistad? \nIngrese la opción que considere importante: ")
+                validar = verificarNum(amistad)
+                while validar == False:
+                    print("Lo sentimos,el valor ingresado no es un numero.")
+                    amistad = input("¿Qué valora de la amistad? \nIngrese las opciones que considere importantes: ")
+                    validar = verificarNum(amistad)
+                if validar == True:
+                    parar = input("¿Desea agregar otro valor para amistad? \nResponda 'n' para parar, o cualquier otra tecla para continuar")
+
+            #Agregar sus generos musicales preferidos
             musica = input("¿Cuáles son sus géneros musicales faovritos?")
             ocupacion = input("Ingrese 0 si estudia, ingrese 1 si trabaja o ingrese 3 si ambas: ")
             actividad = input("¿Qué actividades realiza en su tiempo libre?")
