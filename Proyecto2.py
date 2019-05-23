@@ -251,6 +251,9 @@ def comunes(buscador, buscado):
             com.append(x)
     return com
 
+def verificarNum(x):
+    resultado = x.isnumeric()
+    return resultado
 
 nombre=input("Ingrese un nombre completo")
 amigos=algoritmo(nombre, getPersonas())
