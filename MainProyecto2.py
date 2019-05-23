@@ -9,6 +9,11 @@
 
 #from Proyecto2 import *
 
+#Verifica que el valor ingresado sea un numero
+def verificarNum (x):
+    resultado = x.isnumeric()
+    return resultado
+
 print("----------   ¡Bienvenidos a MeetMe!   ----------")
 
 menu = ("\nEstas son las opciones que puede realizar:" +
@@ -31,17 +36,24 @@ while (opcion != 3):
         parar = " "
         while parar != "n":
             tipos = input("Ingrese el número de opcion que define su personalidad: ")
-            parar = input("¿Desea agregar otra personalidad? \nResponda 'n' para no, o cualquier otra tecla para sí: ")
+            validar = verificarNum(tipos)
+            while validar == False:
+                print("Lo sentimos,el valor ingresado no es un numero")
+                tipos = input("Ingrese el número de opcion que define su personalidad: ")
+                validar = verificarNum(tipos)
+            if validar == True:
+                parar = input("¿Desea agregar otra personalidad? \nResponda 'n' para no, o cualquier otra tecla para sí: ")
         else:
             #print(tipos)
             for i in personalidad:
                 print(personalidad)
                 #addPersonalidad(nombre,i)
             amis = []
-            valor = ["0. Confianza", "1. Lealtad","2. Honestidad","3. Apoyo mutuo","4. Humildad","5. Solidaridad","6. Compañerismo","7. Tolerancia \n"]
+            valor = ["\n0. Confianza", "1. Lealtad","2. Honestidad","3. Apoyo mutuo","4. Humildad","5. Solidaridad","6. Compañerismo","7. Tolerancia \n"]
             for i in valor:
                 print(i)
-            amistad = input("¿Qué valora de la amistad?")
+            amistad = input("¿Qué valora de la amistad? \nIngrese las opciones que considere importantes: ")
+            
             musica = input("¿Cuáles son sus géneros musicales faovritos?")
             ocupacion = input("Ingrese 0 si estudia, ingrese 1 si trabaja o ingrese 3 si ambas: ")
             actividad = input("¿Qué actividades realiza en su tiempo libre?")
