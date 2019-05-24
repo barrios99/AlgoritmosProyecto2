@@ -9,20 +9,6 @@
 
 from Proyecto2 import *
 
-#Verifica que el valor ingresado sea un numero
-def verificarNum (x):
-    resultado = x.isnumeric()
-    return resultado
-
-def opcion_rango (a,b,c):
-    try:
-        if a > b or a < c:
-            return False
-        else:
-            return True
-    except ValueError:
-        return False
-
 print("---------------   ¡Bienvenidos a MeetMe!   ---------------")
 
 menu = ("\nEstas son las opciones que puede realizar:" +

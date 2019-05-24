@@ -159,6 +159,20 @@ def comunes(buscador, buscado):
                 com.append(x)
     return com
 
+#Verifica que el valor ingresado sea un numero
+def verificarNum (x):
+    resultado = x.isnumeric()
+    return resultado
+
+def opcion_rango (a,b,c):
+    try:
+        if a > b or a < c:
+            return False
+        else:
+            return True
+    except ValueError:
+        return False
+
 
 
 
