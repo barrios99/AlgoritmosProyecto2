@@ -10,10 +10,12 @@
 from neo4jrestclient.client import GraphDatabase
 gdb = GraphDatabase("http://localhost:7474", username="neo4j", password="1111")
 
+#Crea un nuevo nodo en la base de datos
 def addPersona(nombre, correo):
     persona= gdb.nodes.create(name=nombre,email=correo)
     persona.labels.add("persona")
 
+#Crea nuevas relaciones entre nodos
 def addPersonalidad (nombre, tipos):
     persona= gdb.labels.get("persona")
     persona.all()
@@ -51,6 +53,7 @@ def addActividad (nombre, actividades):
 
 #-------------------------------------------------------------------------------------------------------------------------------------------
 
+#Devuelve una lista con todas las caracteristicas de una persona 
 def getPersona(nombre):
     buscar="match (persona{name:'"+nombre+"'})-[x]->(d) return x,d"
     resultados = gdb.query(buscar, data_contents=True)
@@ -64,6 +67,7 @@ def getPersona(nombre):
                         loficial.append(i[c])
     return loficial
 
+#Devuelve una lista con los nombres de todas las personas en la bd
 def getPersonas():
     buscar="match (n:persona) return n"
     resultados = gdb.query(buscar, data_contents=True)
@@ -76,6 +80,7 @@ def getPersonas():
                     loficial.append(i["name"])
     return loficial
 
+#Retorna una lista de todos los correos correspondientes a cada una de las personas
 def getCorreos():
     buscar="match (n:persona) return n"
     resultados = gdb.query(buscar, data_contents=True)
@@ -88,6 +93,7 @@ def getCorreos():
                     loficial.append(i["email"])
     return loficial
 
+#Devuelve una lista que contiene las listas de los gustos de todas las personas en la BD
 def gustosPersonas(persona, personas):
     loficial=[]
     for x in personas:
@@ -96,9 +102,11 @@ def gustosPersonas(persona, personas):
             loficial.append(a)
     return loficial
 
+#Busca una persona en una lista
 def buscaruno(persona, personas):
     return personas.index(persona)
 
+#Algoritmo de recomendacion
 def algoritmo(persona, personas, correos):
     indice=buscaruno(persona, personas)
     tamaño=len(personas)
@@ -110,17 +118,24 @@ def algoritmo(persona, personas, correos):
     comdc=[]
     dev=[]
     correoc=[]
+    #Obtiene los gustos de todas las personas
     gustos=gustosPersonas(persona, personas)
+    #para cada persona en la bd
     for i in range(0,tamaño):
         com=0
         tot=0
+        #obtiene los comunes
         com=comunes(gustos[indice],gustos[i])
         comun.append(len(com))
         cdec.append(com)
+        #obtiene las caracteristicas totales
         tot=(len(gustos[i])+len(gustos[indice]))-len(com)
         total.append(tot)
     for s in range(0, tamaño):
+        #formula de similitud
         prop=1-(comun[s]/total[s])
+        #si supera la similitud establecidad
+        #devuelve el nombre de la persona, su correo y las cosas en comun
         if (prop<=0.5):
             if personas[s] is not personas[indice]:
                 if personas[s] not in recomendados:
@@ -132,6 +147,7 @@ def algoritmo(persona, personas, correos):
     dev.append(correoc)
     return dev
 
+#Obtiene los gustos en comun entre dos personas
 def comunes(buscador, buscado):
     com=[]
     for x in buscado:
@@ -140,26 +156,6 @@ def comunes(buscador, buscado):
                 com.append(x)
     return com
 
-def opcion_rango (a,b,c):
-    try:
-        if a > b or a < c:
-            return False
-        else:
-            return True
-    except ValueError:
-        return False
-    
-def verificarNum (x):
-    resultado = x.isnumeric()
-    return resultado
 
-nombre=input("Ingrese un nombre completo")
-amigos=algoritmo(nombre, getPersonas(), getCorreos())
-print("Se encontraron: "+str(len(amigos[0]))+" posibles amigos para ti")
-for f in range(0, len(amigos[0])):
-    print("\n")
-    print("*Nombre: "+amigos[0][f]+"\t Correo: "+amigos[2][f])
-    print("   Cosas en comun con esta persona:")
-    for d in amigos[1][f]:
-        print("\t-"+d)
+
 
