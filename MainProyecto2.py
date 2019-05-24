@@ -10,9 +10,9 @@
 #from Proyecto2 import *
 
 #Verifica que el valor ingresado sea un numero
-#def verificarNum (x):
-#   resultado = x.isnumeric()
-#    return resultado
+def verificarNum (x):
+    resultado = x.isnumeric()
+    return resultado
 
 print("---------------   ¡Bienvenidos a MeetMe!   ---------------")
 
@@ -50,26 +50,31 @@ while (opcion != 3):
                 #addOcupacion(nombre,et)
 
         #Agrega el tipo de personalidad de la persona
-        tipos = ["\n0. Pacificador", "1. Reformador", "2. Triunfador", "3. Ayudador", "4. Romántico", "5. Investigador", "6. Leal", "7. Entusiasta", "8. Desafiador", "9. Extrovertido", "10. Introvertido", "11. Ninguna de las anteriores \n"]
+        tipos = ["\n0. Pacificador", "1. Reformador", "2. Triunfador", "3. Ayudador", "4. Romántico", "5. Investigador", "6. Leal", "7. Entusiasta", "8. Desafiador", "9. Extrovertido", "10. Introvertido"]
+        perso = ["Pacificador","Reformador","Triunfador","Ayudador","Romántico","Investigador","Leal","Entusiasta","Desafiador","Extrovertido","Introvertido"]
         for i in tipos:
             print(i)
         personalidad = []
         parar = " "
         while parar != "n":
-            tipos = input("Ingrese el número de opcion que define su personalidad: ")
-            validar = verificarNum(tipos)
+            tipo = input("Ingrese el número de opcion que define su personalidad: ")
+            validar = verificarNum(tipo)
             while validar == False:
                 print("Lo sentimos,el valor ingresado no es un numero.")
-                tipos = input("Ingrese el número de opción que define su personalidad: ")
-                validar = verificarNum(tipos)
+                tipo = input("Ingrese el número de opción que define su personalidad: ")
+                validar = verificarNum(tipo)
             if validar == True:
+                tipo = int(tipo)
                 parar = input("¿Desea agregar otra personalidad? \nResponda 'n' para parar, o cualquier otra tecla para continuar: ")
-                personalidad.append(tipos)
+                personalidad.append(tipo)
+                
             #for i in personalidad:
-                #addPersonalidad(nombre, tipos[i])
+                #addPersonalidad(nombre, perso[i])
+        #print(p)
                 
         #Agregar lo que valora en una amistad 
-        valor = ["\n0. Confianza", "1. Lealtad","2. Honestidad","3. Apoyo mutuo","4. Humildad","5. Solidaridad","6. Compañerismo","7. Tolerancia","8. Ninguna de las anteriores. \n"]
+        valor = ["\n0. Confianza", "1. Lealtad","2. Honestidad","3. Apoyo mutuo","4. Humildad","5. Solidaridad","6. Compañerismo","7. Tolerancia \n"]
+        valores = ["Confianza","Lealtad","Honestidad","Apoyo mutuo","Humildad","Solidaridad","Compañerismo","Tolerancia"]
         for i in valor:
             print(i)
         amis = []
@@ -85,10 +90,11 @@ while (opcion != 3):
                 no = input("¿Desea agregar otro valor para amistad? \nResponda 'n' para parar, o cualquier otra tecla para continuar: ")
                 amis.append(amistad)
             #for i in amis:
-                #addAmistad(nombre, valor[i])
+                #addAmistad(nombre, valores[i])
         
             #Agregar sus generos musicales preferidos
         generos = ["\n0. Disco", "1. Reggaeton", "2. Salsa","3. Pop","4. Rock","5. Electrónica","6. Rap","7. Trap","8. Hip-Hop","9. Cristiana","10. Jazz","11. Metal","12. Cumbia", "13. Merengue \n"]
+        generosM = ["Disco", "Reggaeton", "Salsa","Pop","Rock","Electrónica","Rap","Trap","Hip-Hop","Cristiana","Jazz","Metal","Cumbia","Merengue"]
         for i in generos:
             print(i)
         music = []
@@ -107,6 +113,7 @@ while (opcion != 3):
                 #addMusica(nombre,generos[i])
 
         a= ["\n0. Practicar deporte","1. Ver películas o series","2. Salir a comer","3. Visitar familiares o amigos","4. Ir a una fiesta","5. Cocinar","6. Bailar","7. Escuchar música","8. Jugar videojuegos","9. Leer","10. Voluntariado","11. Pintar o dibujar","12. Componer música","13. Ordenar mi cuarto","14. Aprender algo nuevo","15. Recurrir a redes sociales","16. Dormir","17. Manualidades \n"]
+        tLibre= ["Practicar deporte","Ver películas o series","Salir a comer","Visitar familiares o amigos","Ir a una fiesta","Cocinar","Bailar","Escuchar música","Jugar videojuegos","Leer","Voluntariado","Pintar o dibujar","Componer música","Ordenar mi cuarto","Aprender algo nuevo","Recurrir a redes sociales","Dormir","Manualidades"]
         for i in a:
             print(i)
         libre = []
@@ -122,16 +129,18 @@ while (opcion != 3):
                 agregar = input("¿Desea agregar otra actividad? \nResponda 'n' para parar, o cualquier otra tecla para continuar.")                        
                 libre.append(actividad)
             #for i in libre:
-                #addActividad(nombre,a[i])
+                #addActividad(nombre,tLibre[i])
     elif opcion == 2:
         #Recomendar personas ingresando un nombre
         nombre=input("Ingrese un nombre completo")
-        amigos=algoritmo(nombre, getPersonas())
+        amigos=algoritmo(nombre, getPersonas(), getCorreos())
+        print("Se encontraron: "+str(len(amigos[0]))+" posibles amigos para ti")
         for f in range(0, len(amigos[0])):
             print("\n")
-            print(amigos[0][f])
-            print("Cosas en comun con esta persona:")
+            print("*Nombre: "+amigos[0][f]+"\t Correo: "+amigos[2][f])
+            print("   Cosas en comun con esta persona:")
             for d in amigos[1][f]:
-                print(d)
+                print("\t-"+d)
+                
     else:
-        print("Gracias por visitar nuestro sistema de recomendaciones.")
+        print("\nGracias por visitar nuestro sistema de recomendaciones.")
