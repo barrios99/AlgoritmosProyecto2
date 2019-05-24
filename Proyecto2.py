@@ -140,6 +140,18 @@ def comunes(buscador, buscado):
                 com.append(x)
     return com
 
+def opcion_rango (a,b,c):
+    try:
+        if a > b or a < c:
+            return False
+        else:
+            return True
+    except ValueError:
+        return False
+    
+def verificarNum (x):
+    resultado = x.isnumeric()
+    return resultado
 
 nombre=input("Ingrese un nombre completo")
 amigos=algoritmo(nombre, getPersonas(), getCorreos())
