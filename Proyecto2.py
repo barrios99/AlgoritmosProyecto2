@@ -104,7 +104,10 @@ def gustosPersonas(persona, personas):
 
 #Busca una persona en una lista
 def buscaruno(persona, personas):
-    return personas.index(persona)
+    a=-1
+    if persona in personas:
+        a=personas.index(persona)
+    return a
 
 #Algoritmo de recomendacion
 def algoritmo(persona, personas, correos):
